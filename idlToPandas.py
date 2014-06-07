@@ -30,17 +30,21 @@ except ImportError:
 __author__ = "Matt Giguere (github: @mattgiguere)"
 __maintainer__ = "Matt Giguere"
 __email__ = "matthew.giguere@yale.edu"
-__status__ = " Development NOT(Prototype or Production)"
-__version__ = '0.0.1'
+__status__ = " Production"
+__version__ = '0.1.0'
 
 
-def idlToPandas(fileName, keyValue):
+def idlToPandas(fileName, keyValue='cf3'):
     """PURPOSE: To restore an IDL strcture contained
     within an IDL save file and add it to a pandas
     data frame."""
-    struct = readsav(fileName)
+    idlSavedVars = readsav(fileName)
+    struct = idlSavedVars[keyValue]
+    tags = []
+    for tag in struct.dtype.descr:
+        tags.append(tag[0][0])
 
-    pdf = pd.DataFrame(struct.keyValue)
+    pdf = pd.DataFrame.from_records(struct, columns=tags)
     return pdf
 
 
@@ -63,4 +67,4 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    idlToPandas(args.fileName, args.keyValue)
+    idlToPandas(args.fileName, keyValue=args.keyValue)
