@@ -11,7 +11,6 @@ a pandas DataFrame.
 
 
 ###Example
-
 ```
 from idlToPandas import *  
 rvStruct = idlToPandas('/my/data/dir/vst123456.dat', 
@@ -20,3 +19,9 @@ rvStruct = idlToPandas('/my/data/dir/vst123456.dat',
 print(rvStruct.OBNM)  
 print(rvStruct.keys())  
 ```
+
+###Dependencies
+
+* argparse
+* pandas
+* scipy
