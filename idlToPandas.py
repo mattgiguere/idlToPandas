@@ -34,11 +34,18 @@ __status__ = " Production"
 __version__ = '0.1.0'
 
 
-def idlToPandas(fileName, keyValue='cf3'):
+def idlToPandas(fileName, keyValue=0):
     """PURPOSE: To restore an IDL strcture contained
     within an IDL save file and add it to a pandas
     data frame."""
     idlSavedVars = readsav(fileName)
+
+    #check if the keyValue passed in is actually an index
+    #rather than the keyValue name:
+    if valIsNumber(keyValue):
+        keys = idlSavedVars.keys()
+        keyValue = keys[keyValue]
+
     struct = idlSavedVars[keyValue]
     tags = []
     for tag in struct.dtype.descr:
@@ -46,6 +53,13 @@ def idlToPandas(fileName, keyValue='cf3'):
 
     pdf = pd.DataFrame.from_records(struct, columns=tags)
     return pdf
+
+def valIsNumber(instring):
+    try:
+        float(instring)
+        return True
+    except:
+        return False
 
 
 if __name__ == '__main__':
