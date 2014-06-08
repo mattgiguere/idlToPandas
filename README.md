@@ -1,8 +1,22 @@
 idlToPandas
 ===========
 
-`idlToPandas` is a library to import a saved IDL structure and return it as a pandas DataFrame. 
-Simply pass in the filename of the saved IDL structure, optionally specificy what variable 
-in the IDL save file is the structure of interest using the `keyValue` optional argument, 
-and the pandas DataFrame containing the IDL structure is returned with the IDL tags used
-as column names in the pandas DataFrame.
+`idlToPandas` is a library to import a saved IDL structure and return it as 
+a pandas DataFrame. 
+
+
+###Arguments
+**filename**: the filename of the IDL save file  
+**keyValue [optional]**: if there is more than one variable stored in the IDL save file `keyValue` specifies which variable is the IDL structure you would like to convert into a pandas DataFrame.
+
+
+###Example
+
+```
+from idlToPandas import *  
+rvStruct = idlToPandas('/my/data/dir/vst123456.dat', 
+			keyValue='cf3')  
+
+print(rvStruct.OBNM)  
+print(rvStruct.keys())  
+```
