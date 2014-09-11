@@ -6,7 +6,6 @@ Created on 2014-06-01T20:15:40
 
 from __future__ import division, print_function
 import sys
-import subprocess
 
 
 try:
@@ -54,6 +53,7 @@ def idlToPandas(fileName, keyValue=0):
 
     pdf = pd.DataFrame.from_records(struct, columns=tags)
     return pdf
+
 
 def valIsNumber(instring):
     try:
