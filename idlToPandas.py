@@ -77,7 +77,7 @@ if __name__ == '__main__':
         'one.', nargs='?')
     if len(sys.argv) > 2:
         print('use the command')
-        print('python idlToPandas.py keyValue')
+        print('python idlToPandas.py fileName')
         sys.exit(2)
 
     args = parser.parse_args()
